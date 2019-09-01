@@ -2,6 +2,9 @@
 Sometimes you are buying something out of Brazil using a credit card and thought "How much does it cost?"
 The price simulator helps you to simulate it
 
+[![Build Status](https://travis-ci.org/pvgomes/price-simulator.svg?branch=master)](https://travis-ci.org/pvgomes/price-simulator)
+[![CircleCI](https://circleci.com/gh/pvgomes/price-simulator.svg?style=svg)](https://circleci.com/gh/pvgomes/price-simulator)
+
 ## before commit
 - run tests: `lein test`
 - run lint-fix: `lein lint-fix`
