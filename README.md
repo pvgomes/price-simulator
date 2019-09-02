@@ -22,6 +22,8 @@ WIP ```docker-compose up```
     $ java -jar conversor-0.1.0-standalone.jar --currency=USB --amount=500
 
 ## Examples
+`lein ring server-headless`
+
 `lein run --currency=USD --amount=50`
 
 `lein run --currency=EUR --amount=50`

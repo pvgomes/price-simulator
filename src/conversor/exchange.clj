@@ -19,6 +19,12 @@
   (:body (http-client/get api-url
                           {:query-params {"q" quotation "apiKey" api-key}})))
 
+(defn raw-quotation [from to]
+  (let [quotation (format-quotation from to)]
+    (-> (quote-by-quotation quotation)
+        (parse-string)
+        (get-in ["results" quotation "val"]))))
+
 (defn get-quotation [from to]
   (let [quotation (format-quotation from to)]
     (-> (quote-by-quotation quotation)
