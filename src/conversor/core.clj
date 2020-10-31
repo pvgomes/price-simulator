@@ -1,7 +1,8 @@
 (ns conversor.core
   (:require [clojure.tools.cli :refer [parse-opts]]
             [conversor.exchange :refer [format-response get-quotation]])
-  (:gen-class))
+  (:gen-class
+    :methods [^:static [handler [String] String]]))
 
 (def base-currency "BRL")
 
@@ -19,3 +20,9 @@
         (format-response currency amount)
         (prn))))
 
+(defn -handler [s]
+  (let [currency "USD"
+        amount (Integer. s)]
+    (-> (get-quotation base-currency currency)
+        (format-response currency amount)
+        (str))))
