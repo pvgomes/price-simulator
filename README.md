@@ -11,6 +11,12 @@ The price simulator helps you to simulate it
 
 ## set up
 
+### credentials
+You must get your own api key on [free currency](https://free.currencyconverterapi.com/) and then copy .env.example to .env adding your own key
+```
+cp .env.example .env
+```
+
 WIP ```docker-compose up```
 
 ## compile
@@ -31,7 +37,78 @@ WIP ```docker-compose up```
 `lein run --currency=ARS --amount=50`
 
 
+## Deploy on AWS Lambda
+This project is serverless and ready to use on [AWS Lambda](https://aws.amazon.com/lambda/) to deploy and run it on Lambda, follow this steps:
 
+Requirements
+- You should have [AWS CLI](https://aws.amazon.com/cli/) don't know how to install? See how on [my youtube channel](https://www.youtube.com/watch?v=CFgNFM2qT9U)
+
+1. Create jar
+```
+lein uberjar
+```
+
+2. Create the role to run lambdas
+
+    a) trust-policy.json
+    ```
+    echo '{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "lambda.amazonaws.com"
+          },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }' > trust-policy.json
+    ```
+    
+    b) create this role with one name (our case, lambda-ex)
+    `aws iam create-role --role-name lambda-ex --assume-role-policy-document file://trust-policy.json`
+
+
+    c) You will see the json response and should copy the arn to use it further
+    ```
+    {
+        "Role": {
+            "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                ...
+            },
+            ...
+            "RoleName": "lambda-ex",
+            "Path": "/",
+            "Arn": "arn:aws:iam::5072812121311:role/lambda-ex"
+        }
+    }
+    ```
+
+3. Create your lambda (replace arn by your own)
+```
+aws lambda create-function \
+  --function-name price-simulator \
+  --handler conversor.core::handler \
+  --runtime java8 \
+  --memory 512 \
+  --timeout 10 \
+  --role arn:aws:iam::5072812121311:role/lambda-ex \
+  --zip-file fileb://./target/conversor-0.1.0-SNAPSHOT.jar \
+  --region us-east-1
+
+```
+
+4. Test it
+``` 
+aws lambda invoke \
+    --function-name price-simulator \
+    --payload '"300"' response.json \
+    --region=us-east-1
+```
+
+Done!
 
 ### What we use?
 - tools.cli to get args
