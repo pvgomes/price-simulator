@@ -16,6 +16,8 @@
        (format "R$ %.2f" (* quotation value))))
 
 (defn quote-by-quotation [quotation]
+  (if (nil? api-key)
+    (throw (Exception. "API_KEY not defined")))
   (:body (http-client/get api-url
                           {:query-params {"q" quotation "apiKey" api-key}})))
 

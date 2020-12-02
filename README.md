@@ -12,9 +12,9 @@ The price simulator helps you to simulate it
 ## set up
 
 ### credentials
-You must get your own api key on [free currency](https://free.currencyconverterapi.com/) and then copy .env.example to .env adding your own key
+You must get your own api key on [free currency](https://free.currencyconverterapi.com/) and then export variable by env vars:
 ```
-cp .env.example .env
+export API_KEY=YOURAPIKEY
 ```
 
 WIP ```docker-compose up```
