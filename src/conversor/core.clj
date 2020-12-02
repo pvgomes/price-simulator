@@ -2,7 +2,7 @@
   (:require [clojure.tools.cli :refer [parse-opts]]
             [conversor.exchange :refer [format-response get-quotation]])
   (:gen-class
-    :methods [^:static [handler [String] String]]))
+   :methods [^:static [handler [String] String]]))
 
 (def base-currency "BRL")
 

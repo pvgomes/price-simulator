@@ -2,8 +2,8 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [conversor.exchange :as exchange]
-            [ring.middleware.defaults :refer [wrap-defaults
-                                              site-defaults]]))
+            [ring.middleware.defaults :refer [site-defaults
+                                              wrap-defaults]]))
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
