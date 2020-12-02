@@ -91,11 +91,11 @@ lein uberjar
 aws lambda create-function \
   --function-name price-simulator \
   --handler conversor.core::handler \
-  --runtime java8 \
+  --runtime java11 \
   --memory 512 \
   --timeout 10 \
   --role arn:aws:iam::5072812121311:role/lambda-ex \
-  --zip-file fileb://./target/conversor-0.1.0-SNAPSHOT.jar \
+  --zip-file fileb://./target/uberjar/conversor-0.1.0-SNAPSHOT-standalone.jar \
   --region us-east-1
 
 ```
