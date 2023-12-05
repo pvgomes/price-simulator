@@ -36,7 +36,7 @@ WIP ```docker-compose up```
 `lein run --currency=ARS --amount=50`
 
 
-## Deploy on AWS Lambda
+## Deploy on AWS Lambda (WIP)
 This project is serverless and ready to use on [AWS Lambda](https://aws.amazon.com/lambda/) to deploy and run it on Lambda, follow this steps:
 
 Requirements
