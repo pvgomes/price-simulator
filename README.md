@@ -1,6 +1,6 @@
 # Price simulator
 Sometimes you are buying something out of Brazil or worldwide using a credit card and thought "How much does it cost?"
-The price simulator helps you to simulate it
+The price simulator helps you to simulate it test
 
 [![Build Status](https://travis-ci.org/pvgomes/price-simulator.svg?branch=master)](https://travis-ci.org/pvgomes/price-simulator)
 
